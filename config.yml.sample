@@ -1,0 +1,6 @@
+bookple:
+    id: 'aladin@user.id'
+    password: 'aladin_password'
+xlsx:
+    file: '/xlsx/path.xlsx'
+fullsync: true
