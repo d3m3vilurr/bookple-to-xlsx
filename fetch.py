@@ -154,6 +154,9 @@ if __name__ == '__main__':
     for ws in prevs:
         workbook.remove_sheet(ws)
         new_sheet = workbook.create_sheet(title=ws.title)
+        new_sheet.column_dimensions['A'].width = 50
+        new_sheet.column_dimensions['B'].width = 50
+        new_sheet.column_dimensions['C'].width = 50
         for idx, row in enumerate(ws.iter_rows()):
             if idx + 1 in ws.remove_rows:
                 continue
