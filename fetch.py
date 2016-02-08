@@ -148,7 +148,6 @@ if __name__ == '__main__':
             except ValueError:
                 break
             page += 1
-            print config['fullsync']
             if not config['fullsync'] and page > 5:
                 break
         prevs.append(ws)
