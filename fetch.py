@@ -88,7 +88,7 @@ def item_to_worksheet(item, ws, prevs=None):
         row = find_from_worksheet(item, p)
         if not row:
             continue
-        print 'remove row %d from %s' % (row, p.title)
+        print 'remove row %d from %s: %s' % (row, p.title, item['title'])
         p.remove_rows.append(row)
     ws.append((item['title'], item['authors'], item['image']))
 
