@@ -92,35 +92,6 @@ def item_to_worksheet(item, ws, prevs=None):
         p.remove_rows.append(row)
     ws.append((item['title'], item['authors'], item['image']))
 
-# HACK
-# https://github.com/burnash/gspread/pull/337
-def del_row(self, index):
-    """"Deletes a row from the worksheet at the specified index
-
-    :param index: Index of a row for deletion
-    """
-    if index < 1 or index > self.row_count:
-        raise IndexError('Row index out of range')
-
-    # Retrieve all Cells at or below `index` using a single batch query
-    top_left = self.get_addr_int(index, 1)
-    bottom_right = self.get_addr_int(self.row_count, self.col_count)
-    range_str = '%s:%s' % (top_left, bottom_right)
-
-    cells_after_delete = self.range(range_str)
-
-    # Shift rows up
-    for ind, cell in enumerate(cells_after_delete):
-        if ind + self.col_count >= len(cells_after_delete):
-            break
-        new_val = cells_after_delete[ind + self.col_count].input_value
-        cell.value = new_val
-
-    self.update_cells(cells_after_delete)
-
-    # Remove last row
-    self.resize(rows = self.row_count - 1)
-
 if __name__ == '__main__':
     import yaml
 
