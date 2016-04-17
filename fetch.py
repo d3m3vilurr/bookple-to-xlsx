@@ -102,6 +102,9 @@ if __name__ == '__main__':
     except IOError:
         workbook = openpyxl.Workbook()
     prevs = []
+    maxpage = config['page']
+    if type(maxpage) == str and maxpage.lower() == 'full':
+        maxpage = 0
     for title, types in BOOKPLE_TYPES.iteritems():
         try:
             ws = workbook.get_sheet_by_name(title)
@@ -119,7 +122,9 @@ if __name__ == '__main__':
             except ValueError:
                 break
             page += 1
-            if not config['fullsync'] and page > 5:
+            if maxpage <= 0:
+                continue
+            if maxpage < page:
                 break
         prevs.append(ws)
     for ws in prevs:

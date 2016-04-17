@@ -1,6 +1,12 @@
+# Aladin auth informations
 bookple:
     id: 'aladin@user.id'
     password: 'aladin_password'
+
+# Store file path
 xlsx:
     file: '/xlsx/path.xlsx'
-fullsync: true
+
+# Fetch page count
+# if value is negative, 0 or `full`, to set full sync
+page: 10
