@@ -74,8 +74,8 @@ def find_from_worksheet(item, ws):
         if not _skip_first_line:
             _skip_first_line = True
             continue
-        if row[0].value == item['title'] and \
-                row[1].value == item['authors']:
+        if (row[0].value or '').encode('utf8') == item['title'] and \
+                (row[1].value or '').encode('utf8') == item['authors']:
             return row[0].row
 
 def item_to_worksheet(item, ws, prevs=None):
