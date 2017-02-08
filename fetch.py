@@ -64,8 +64,8 @@ def items(page):
     feeds = xpath(BOOKPLE_XPATHS['FEED'])
     for feed in feeds:
         img = feed.xpath(BOOKPLE_XPATHS['COVER'])[0].get('src')
-        title = feed.xpath(BOOKPLE_XPATHS['TITLE'])[0].text
-        authors = feed.xpath(BOOKPLE_XPATHS['AUTHORS'])[0].text
+        title = (feed.xpath(BOOKPLE_XPATHS['TITLE'])[0].text or '').encode('utf8')
+        authors = (feed.xpath(BOOKPLE_XPATHS['AUTHORS'])[0].text or '').encode('utf8')
         yield dict(title=title, authors=authors, image=img)
 
 def find_from_worksheet(item, ws):
