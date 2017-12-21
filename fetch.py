@@ -65,8 +65,8 @@ def items(page):
     feeds = xpath(BOOKPLE_XPATHS['FEED'])
     for feed in feeds:
         img = feed.xpath(BOOKPLE_XPATHS['COVER'])[0].get('src')
-        title = (feed.xpath(BOOKPLE_XPATHS['TITLE'])[0].text or '').encode('utf8')
-        authors = (feed.xpath(BOOKPLE_XPATHS['AUTHORS'])[0].text or '').encode('utf8')
+        title = (feed.xpath(BOOKPLE_XPATHS['TITLE'])[0].text or '')
+        authors = (feed.xpath(BOOKPLE_XPATHS['AUTHORS'])[0].text or '')
         yield dict(title=title, authors=authors, image=img)
 
 def find_from_worksheet(item, ws):
@@ -75,8 +75,8 @@ def find_from_worksheet(item, ws):
         if not _skip_first_line:
             _skip_first_line = True
             continue
-        if (row[0].value or '').encode('utf8') == item['title'] and \
-                (row[1].value or '').encode('utf8') == item['authors']:
+        if (row[0].value or '') == item['title'] and \
+                (row[1].value or '') == item['authors']:
             return row[0].row
 
 def item_to_worksheet(item, ws, prevs=None):
@@ -96,7 +96,7 @@ def item_to_worksheet(item, ws, prevs=None):
 if __name__ == '__main__':
     import yaml
 
-    config = yaml.load(file('config.yml'))
+    config = yaml.load(open('config.yml'))
     aladin_session = login_aladin(config)
     try:
         workbook = openpyxl.load_workbook(config['xlsx']['file'])
@@ -106,7 +106,7 @@ if __name__ == '__main__':
     maxpage = config['page']
     if type(maxpage) == str and maxpage.lower() == 'full':
         maxpage = 0
-    for title, types in BOOKPLE_TYPES.iteritems():
+    for title, types in BOOKPLE_TYPES.items():
         try:
             ws = workbook.get_sheet_by_name(title)
         except KeyError:
