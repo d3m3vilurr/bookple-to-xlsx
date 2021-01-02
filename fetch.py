@@ -8,7 +8,7 @@ import openpyxl
 
 ALADIN = 'https://www.aladin.co.kr'
 ALADIN_LOGIN = ALADIN + '/login/wlogin_popup.aspx'
-BOOKPLE = 'http://bookple.aladin.co.kr'
+BOOKPLE = 'http://blog.aladin.co.kr'
 BOOKPLE_LIST = BOOKPLE + '/ucl/bookple/ajax/listRepeator_ajax.aspx'
 BOOKPLE_XPATHS = {
     'FEED': '//div[@class="feed_one2"]',
